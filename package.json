@@ -1,0 +1,23 @@
+{
+  "name": "login-validation-attmpt",
+  "version": "1.0.0",
+  "description": "This application will allow user to register and login followed by entring inputs maximum 3 times, if any of the entry matches with predifened values, he/she will get a success message",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salmanthecoder/login-validation-attmpt.git"
+  },
+  "keywords": [
+    "test",
+    "register",
+    "validate"
+  ],
+  "author": "Salman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/salmanthecoder/login-validation-attmpt/issues"
+  },
+  "homepage": "https://github.com/salmanthecoder/login-validation-attmpt#readme"
+}
