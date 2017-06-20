@@ -9,12 +9,16 @@ export class AlertService {
     private keepAfterNavigationChange = false;
 
     constructor(private router: Router) {
-        // clear alert message on route change
+        // remove alert message on route change
         router.events.subscribe(event => {
             if (event instanceof NavigationStart) {
                 if (this.keepAfterNavigationChange) {
+                    //  single location change
                     this.keepAfterNavigationChange = false;
-                } 
+                } else {
+                    // clear alert
+                    this.subject.next();
+                }
             }
         });
     }
@@ -24,5 +28,12 @@ export class AlertService {
         this.subject.next({ type: 'success', text: message });
     }
 
-    
+error(message: string, keepAfterNavigationChange = false) {
+        this.keepAfterNavigationChange = keepAfterNavigationChange;
+        this.subject.next({ type: 'error', text: message });
+    }
+
+    getMessage(): Observable<any> {
+        return this.subject.asObservable();
+    }
 }
