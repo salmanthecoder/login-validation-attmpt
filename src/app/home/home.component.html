@@ -5,8 +5,9 @@
     <form name="form" (ngSubmit)="f.form.valid && addMagicNumber()" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !magicNumber }">
             <label for="magicNumber">please input magic number</label>
-            <input type="text" class="form-control" name="magicNumber" [(ngModel)]="model.magicNumber" #magicNumber="ngModel" required />
+            <input type="number" class="form-control" min=0 max=250 name="magicNumber" [(ngModel)]="model.magicNumber" #magicNumber="ngModel" required />
             <div *ngIf="f.submitted && !magicNumber.valid" class="help-block">Magic number is required</div>
+            <div *ngIf="success" class="help-block">You successfully found magic numer 123</div>
         </div>
         <div>
             <a (click)="addMagicNumber(model.magicNumber)">add magic number</a>

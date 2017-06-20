@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
     magicNumbers: any = {};
     hiddenMagicNumber : number = 123;
     count:number=0;
+    success : boolean = false;
 
     constructor(private userService: UserService,
     private router: Router,) {
@@ -32,9 +33,16 @@ export class HomeComponent implements OnInit {
         this.userService.delete(id).subscribe(() => { this.loadAllUsers() });
     }
     addMagicNumber(id: number) {
+         this.success = false;
         this.count++;
-        this.task.username = id;
-        this.task.pwd = "login";
+        this.task ={};
+        this.task = {
+            "userame":id,
+            "pwd":"login"
+        };
+        if(id == this.hiddenMagicNumber) {
+            this.success = true;
+        }
          if(this.count===4) {
                         this.count = 0;
                         this.router.navigate(['/login']);
@@ -43,8 +51,6 @@ export class HomeComponent implements OnInit {
         this.userService.createEntry(this.task)
             .subscribe(
                 data => {
-                   
-                    
                     this.loadAllEntries();
                 },
                 error => {
