@@ -16,3 +16,8 @@ this will initiate server on given port
 
 # Running UI
 Once npm is installed write npm start in the cmd of main folder path
+
+once both the servers are up and running 
+try putting this url in browser
+http://localhost:8080/login
+ and you are done
