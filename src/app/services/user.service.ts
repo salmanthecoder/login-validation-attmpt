@@ -26,7 +26,12 @@ export class UserService {
     delete(id: number) {
         return this.http.delete('/api/users/' + id, this.token()).map((response: Response) => response.json());
     }
-
+    getAllentry() {
+        return this.http.get('http://localhost:3000/api/tasks').map((response: Response) => response.json());
+    }
+    createEntry(id: number) {
+        return this.http.post('http://localhost:3000/api/tasks', id).map((response: Response) => response.json());
+    }
     // private helper methods
 
     private token() {

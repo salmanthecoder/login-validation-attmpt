@@ -2,7 +2,23 @@
     <h1>Hi {{currentUser.firstName}}!</h1>
     <p>Please try to input the magic number.</p>
     <p>you can try only 3 times.</p>
-    
+    <form name="form" (ngSubmit)="f.form.valid && addMagicNumber()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !magicNumber }">
+            <label for="magicNumber">please input magic number</label>
+            <input type="text" class="form-control" name="magicNumber" [(ngModel)]="model.magicNumber" #magicNumber="ngModel" required />
+            <div *ngIf="f.submitted && !magicNumber.valid" class="help-block">Magic number is required</div>
+        </div>
+        <div>
+            <a (click)="addMagicNumber(model.magicNumber)">add magic number</a>
+        </div>
+    </form>
+    <h3>you entered:</h3>
+    <ul>
+        <li *ngFor="let magicNum of magicNumbers">
+            Magic number entered is :- {{magicNum.userame}}
+            
+        </li>
+    </ul>
     <h3>All registered users:</h3>
     <ul>
         <li *ngFor="let user of users">

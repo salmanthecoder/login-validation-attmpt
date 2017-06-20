@@ -8,6 +8,7 @@ router.get('/tasks',function(req, res, next){
         if(err){
             res.send(err);
         }
+        res.setHeader('Access-Control-Allow-Origin','*') ;
         res.json(tasks);
     });
 });

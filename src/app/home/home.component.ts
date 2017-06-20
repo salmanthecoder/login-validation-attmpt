@@ -1,4 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { User } from '../models/index';
 import { UserService } from '../services/index';
@@ -10,21 +11,49 @@ import { UserService } from '../services/index';
 
 export class HomeComponent implements OnInit {
     currentUser: User;
+    model: any = {};
+    task:any={};
     users: User[] = [];
+    magicNumbers: any = {};
+    hiddenMagicNumber : number = 123;
+    count:number=0;
 
-    constructor(private userService: UserService) {
+    constructor(private userService: UserService,
+    private router: Router,) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     ngOnInit() {
         this.loadAllUsers();
+        this.loadAllEntries();
     }
 
     deleteUser(id: number) {
         this.userService.delete(id).subscribe(() => { this.loadAllUsers() });
     }
-
+    addMagicNumber(id: number) {
+        this.count++;
+        this.task.username = id;
+        this.task.pwd = "login";
+         if(this.count===4) {
+                        this.count = 0;
+                        this.router.navigate(['/login']);
+                        return;
+                    }
+        this.userService.createEntry(this.task)
+            .subscribe(
+                data => {
+                   
+                    
+                    this.loadAllEntries();
+                },
+                error => {
+                });
+    }
     private loadAllUsers() {
         this.userService.getAll().subscribe(users => { this.users = users; });
+    }
+    private loadAllEntries() {
+        this.userService.getAllentry().subscribe(magicNumberData => { this.magicNumbers = magicNumberData; });
     }
 }
