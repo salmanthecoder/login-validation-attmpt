@@ -13,8 +13,8 @@ router.get('/tasks',function(req, res, next){
     });
 });
 
-router.get('/task/:id',function(req, res, next){
-    db.tasks.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err, task){
+router.get('/task:id',function(req, res, next){
+    db.tasks.find({userame: mongojs.ObjectId(req.params.id)}, function(err, task){
         if(err){
             res.send(err);
         }
@@ -23,6 +23,7 @@ router.get('/task/:id',function(req, res, next){
 });
 router.post('/tasks',function(req, res, next){
     var task = req.body;
+    console.log(task);
     db.tasks.save(task,function(err, tasks){
         if(err){
             res.send(err);
@@ -32,7 +33,7 @@ router.post('/tasks',function(req, res, next){
 });
 router.delete('/task:id',function(req, res, next){
     var task = req.body;
-    db.tasks.remove({_id: mongojs.ObjectId(req.params.id)},function(err, tasks){
+    db.tasks.remove({},function(err, tasks){
         if(err){
             res.send(err);
         }

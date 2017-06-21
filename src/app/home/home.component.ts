@@ -37,8 +37,8 @@ export class HomeComponent implements OnInit {
         this.count++;
         this.task ={};
         this.task = {
-            "userame":id,
-            "pwd":"login"
+            "userame":this.currentUser.firstName,
+            "magicnumber":id
         };
         if(id == this.hiddenMagicNumber) {
             this.success = true;
@@ -48,6 +48,7 @@ export class HomeComponent implements OnInit {
                         this.router.navigate(['/login']);
                         return;
                     }
+                    this.model = {};
         this.userService.createEntry(this.task)
             .subscribe(
                 data => {
@@ -58,6 +59,9 @@ export class HomeComponent implements OnInit {
     }
     private loadAllUsers() {
         this.userService.getAll().subscribe(users => { this.users = users; });
+    }
+     public deleteAllDocs() {
+        this.userService.deleteAll().subscribe(users => { this.users = users; });
     }
     private loadAllEntries() {
         this.userService.getAllentry().subscribe(magicNumberData => { this.magicNumbers = magicNumberData; });
