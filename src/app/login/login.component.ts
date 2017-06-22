@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
         private alertService: AlertService) { }
 
     ngOnInit() {
+        console.log('hello `login` component');
         // reset login status
         this.authenticationService.logout();
 

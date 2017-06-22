@@ -8,4 +8,13 @@ import '../assets/app.css';
     templateUrl: 'app.component.html'
 })
 
-export class AppComponent { }
+export class AppComponent {
+        url:string = 'url';
+        name :string = 'login Valdation attemp'
+    ngOnInit() {
+            console.log('hello `App` component');
+            /**
+             * \to initialise data
+             */
+        }
+ }

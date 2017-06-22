@@ -18,6 +18,13 @@ export class RegisterComponent {
         private userService: UserService,
         private alertService: AlertService) { }
 
+        ngOnInit() {
+            console.log('hello `register` component');
+            /**
+             * \to initialise data
+             */
+        }
+
     register() {
         this.loading = true;
         this.userService.create(this.model)
