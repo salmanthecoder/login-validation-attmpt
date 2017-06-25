@@ -39,23 +39,14 @@ module.exports = function (options) {
         },
 
         {
-          test: /\.ts$/,
-          use: [
-            {
-              loader: 'awesome-typescript-loader',
-              query: {
-                sourceMap: false,
-                inlineSourceMap: true,
-                compilerOptions: {
-                  removeComments: true
-
-                }
-              },
-            },
-            'angular2-template-loader'
-          ],
-          exclude: [/\.e2e\.ts$/]
-        },
+              test: /\.ts$/,
+              loaders: [
+                {
+                    loader: 'awesome-typescript-loader',
+                    options: { configFileName: helpers.root('src', 'tsconfig.json') }
+                }, 'angular2-template-loader'
+              ]
+          },
         {
           test: /\.json$/,
           loader: 'json-loader',

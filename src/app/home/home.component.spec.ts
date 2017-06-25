@@ -5,6 +5,7 @@ import {
   TestBed,
   ComponentFixture
 } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
 import {
   BaseRequestOptions,
@@ -12,6 +13,8 @@ import {
   Http
 } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
+import { UserService } from '../services/index';
+import { RouterTestingModule } from '@angular/router/testing';
 
 /**
  * Load the implementations that should be tested.
@@ -24,10 +27,12 @@ describe(`Home`, () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [FormsModule,RouterTestingModule],
       declarations: [HomeComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         BaseRequestOptions,
+        UserService,
         MockBackend,
         {
           provide: Http,
