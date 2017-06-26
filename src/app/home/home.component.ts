@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
     model: any = {};
     task:any={};
     users: User[] = [];
-    magicNumbers: any = {};
+    magicNumbers: any = [];
     hiddenMagicNumber : number = 123;
     count:number=0;
     success : boolean = false;
@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log('hello `home` component');
         this.loadAllUsers();
         this.loadAllEntries();
     }

@@ -16,8 +16,8 @@
     <h3>you entered:</h3>
     <ul>
         <li *ngFor="let magicNum of magicNumbers">
-            User Name : {{magicNum.userame}} <br>
-            Magic number entered is :- {{magicNum.magicnumber}}
+            User Name : {{magicNum && magicNum.userame ? magicNum.userame :''}} <br>
+            Magic number entered is :- {{magicNum && magicNum.magicnumber ? magicNum.magicnumber :''}}
             
         </li>
     </ul>
